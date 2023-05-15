@@ -734,11 +734,11 @@ auto Scheduler::chooseDisplayMode() -> std::pair<DisplayModePtr, GlobalSignals> 
 
     const auto configs = holdRefreshRateConfigs();
 
-    // Use the lowest allowed refresh rate on AOD/ambient display.
+    // Use the lowest refresh rate on AOD/ambient display.
     if (mPolicy.displayPowerMode == hal::PowerMode::DOZE ||
         mPolicy.displayPowerMode == hal::PowerMode::DOZE_SUSPEND) {
         constexpr GlobalSignals kNoSignals;
-        return {configs->getMinRefreshRateByPolicy(), kNoSignals};
+        return {configs->getMinRefreshRate(), kNoSignals};
     }
 
     // If Display Power is not in normal operation we want to be in performance mode. When coming
